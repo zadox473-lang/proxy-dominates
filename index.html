@@ -7,113 +7,98 @@
     <style>
         :root {
             --primary-color: #00d2ff;
-            --glass-bg: rgba(0, 0, 0, 0.5); 
+            --glass-bg: rgba(0, 0, 0, 0.4); 
             --border-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Fullscreen Video Styling */
+        /* Floating Animation */
+        @keyframes masterFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Video styling */
         #bg-video {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            background: #000; /* Fallback color */
+            z-index: -1;
+            background: #000;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             color: white;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; /* Center horizontally & vertically */
             min-height: 100vh;
+            overflow: hidden;
             background-color: #000;
-            overflow-x: hidden;
         }
 
         .container {
-            width: 85%;
-            max-width: 420px;
+            width: 90%;
+            max-width: 450px; /* Thoda bada kiya */
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 25px;
+            padding: 35px; /* Padding badha di */
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             position: relative;
             z-index: 1;
+            /* Yahan floating apply kiya hai */
+            animation: masterFloat 5s ease-in-out infinite;
         }
 
         .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-color);
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
-            object-fit: cover;
+            width: 120px; height: 120px; border-radius: 50%; /* Image size thoda bada */
+            border: 3px solid var(--primary-color); margin-bottom: 15px;
+            box-shadow: 0 0 20px var(--primary-color); object-fit: cover;
         }
 
-        h2.title { font-size: 0.85rem; color: #aaa; margin-bottom: 5px; letter-spacing: 3px; font-weight: 400; }
-        h1.main-name { font-size: 1.4rem; margin: 0 0 20px 0; color: #fff; letter-spacing: 1px; }
+        h2.title { font-size: 1rem; color: #888; margin-bottom: 5px; letter-spacing: 2px; }
+        h1.main-name { font-size: 1.7rem; margin: 0 0 20px 0; color: #fff; }
 
-        .info-card { 
-            background: rgba(255,255,255,0.05); 
-            border-radius: 12px; 
-            padding: 15px; 
-            text-align: left; 
-            margin-bottom: 20px; 
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .info-item { 
-            margin-bottom: 10px; 
-            padding-bottom: 8px; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-        }
-
-        .info-item:last-child { border-bottom: none; }
-
-        .label { color: #888; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
-        .value { color: var(--primary-color); font-size: 0.9rem; display: block; margin-top: 2px; }
-
-        .btn-main { 
-            display: block; 
-            background: var(--primary-color); 
-            color: #000; 
-            padding: 14px; 
-            border-radius: 10px; 
+        .info-card { background: rgba(255,255,255,0.03); border-radius: 15px; padding: 15px; text-align: left; margin-bottom: 20px; border: 1px solid var(--border-color); }
+        .info-item { margin-bottom: 12px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 5px; }
+        .label { color: #888; font-size: 0.75rem; font-weight: bold; display: block; }
+        .value { color: #00d2ff; font-size: 0.95rem; display: block; margin-top: 2px; }
+        
+        .btn-main { display: block; background: var(--primary-color); color: black; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-bottom: 15px; transition: 0.3s; }
+        
+        /* Glow for MY WORKS and CHANNELS */
+        .nav-links { display: flex; justify-content: space-around; margin-top: 20px; }
+        .nav-links a { 
+            color: var(--primary-color); /* Color neon blue kiya */
             text-decoration: none; 
-            font-weight: bold; 
-            margin-bottom: 15px; 
-            transition: transform 0.2s; 
+            font-size: 0.85rem; 
+            letter-spacing: 1px; 
+            transition: 0.3s;
+            text-shadow: 0 0 10px var(--primary-color); /* Glow Effect */
+            font-weight: bold;
         }
+        .nav-links a:hover { color: white; text-shadow: 0 0 15px white; }
 
-        .btn-main:active { transform: scale(0.98); }
-
-        .nav-links { display: flex; justify-content: space-around; margin-top: 15px; }
-        .nav-links a { color: #bbb; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary-color); }
-
-        .glitch-footer { font-size: 0.7rem; color: #555; margin-top: 25px; line-height: 1.5; }
+        .glitch-footer { font-size: 0.8rem; color: #444; margin-top: 20px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-<video muted autoplay loop playsinline id="bg-video">
-    <source src="./bg.mp4" type="video/mp4">
+<video autoplay muted loop playsinline id="bg-video">
+    <source src="bg.mp4" type="video/mp4">
 </video>
 
 <div class="container">
-    <img src="./dp.jpg" alt="PROXY" class="profile-img">
+    <img src="dp.jpg" alt="PROXY" class="profile-img">
 
     <h2 class="title">🔻💻 𝗔𝗕𝗢𝗨𝗧 💻🔻</h2>
     <h1 class="main-name">•𝗣 𝗥 𝗢 𝗫 𝗬𐏓𝟑🕸️</h1>
