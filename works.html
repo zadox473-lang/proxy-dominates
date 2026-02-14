@@ -1,101 +1,121 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROXY | Works</title>
     <style>
+        :root {
+            --primary-color: #00d2ff;
+            --bg-dark: #050505;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --border-glow: rgba(0, 210, 255, 0.3);
+        }
+
         body { 
             margin: 0; 
-            font-family: 'Segoe UI', sans-serif; 
-            background: #050505; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            background: var(--bg-dark); 
             color: white; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             padding: 40px 20px; 
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
+        /* Title with Neon Pulse */
         .header-glow {
             font-size: 1.8rem;
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 30px;
-            /* Main Title Glow */
-            text-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff;
+            letter-spacing: 8px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
 
         .card { 
-            background: rgba(255,255,255,0.02); 
-            border: 1px solid rgba(255,255,255,0.08); 
+            background: var(--card-bg); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
             border-radius: 20px; 
             padding: 25px; 
             margin: 15px 0; 
             width: 90%; 
             max-width: 400px; 
+            backdrop-filter: blur(10px);
             transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            animation: float 5s ease-in-out infinite; /* Floating starts here */
         }
 
-        /* Card hover effects */
+        /* Different float timings for natural look */
+        .card:nth-child(2) { animation-delay: 0s; }
+        .card:nth-child(3) { animation-delay: 1s; }
+        .card:nth-child(4) { animation-delay: 2s; }
+        .card:nth-child(5) { animation-delay: 3s; }
+
         .card:hover { 
-            border-color: #00d2ff; 
-            transform: translateY(-8px); 
-            background: rgba(0, 210, 255, 0.03); 
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
+            border-color: var(--primary-color); 
+            background: rgba(0, 210, 255, 0.05); 
+            box-shadow: 0 0 25px var(--border-glow);
+            transform: scale(1.02); /* Thoda bada hoga hover par */
+            animation-play-state: paused; /* Hover par floating ruk jayegi */
         }
 
-        /* Glow Headlines */
+        /* Headlines with Glow */
         h2 { 
-            color: #00d2ff; 
+            color: var(--primary-color); 
             font-size: 1.1rem; 
-            margin-top: 0; 
+            margin: 0 0 10px 0; 
             display: flex; 
             align-items: center; 
-            gap: 10px; 
+            gap: 12px; 
             text-transform: uppercase;
-            letter-spacing: 1px;
-            /* Headline Glow Effect */
-            text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .dot {
+            height: 6px;
+            width: 6px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-color);
         }
 
         p { 
-            color: #888; 
+            color: #aaa; 
             font-size: 0.9rem; 
             line-height: 1.6; 
-            margin-bottom: 0; 
+            margin: 0; 
         }
 
+        /* Stylish Return Button */
         .back-link { 
-            margin-top: 40px; 
-            color: #00d2ff; 
+            margin-top: 50px; 
+            color: var(--primary-color); 
             text-decoration: none; 
             font-size: 0.8rem; 
-            border: 1px solid #00d2ff; 
-            padding: 12px 25px; 
+            border: 1px solid var(--primary-color); 
+            padding: 12px 30px; 
             border-radius: 50px; 
             transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: bold;
         }
 
         .back-link:hover {
-            background: #00d2ff;
+            background: var(--primary-color);
             color: #000;
-            box-shadow: 0 0 20px #00d2ff;
-        }
-
-        /* Background detail */
-        .dot {
-            height: 2px;
-            width: 2px;
-            background-color: #00d2ff;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 5px #00d2ff;
+            box-shadow: 0 0 25px var(--primary-color);
         }
     </style>
 </head>
@@ -115,7 +135,7 @@
 
     <div class="card">
         <h2><span class="dot"></span> 𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗦𝗘𝗟𝗟𝗘𝗥</h2>
-        <p>Trusted vendor for high-quality, niche-based Instagram accounts and premium digital usernames TG•IG.</p>
+        <p>Trusted vendor for high-quality, niche-based Instagram accounts and premium digital assets.</p>
     </div>
 
     <div class="card">
@@ -126,4 +146,4 @@
     <a href="index.html" class="back-link">← RETURN TO PROFILE</a>
 
 </body>
-  </html>
+</html>
