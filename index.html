@@ -7,138 +7,110 @@
     <style>
         :root {
             --primary-color: #00d2ff;
-            --glass-bg: rgba(0, 0, 0, 0.5); 
+            --glass-bg: rgba(0, 0, 0, 0.5);
             --border-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Fullscreen Video Styling */
+        /* Video Background */
         #bg-video {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            background: #000; /* Fallback color */
+            z-index: -1;
+            background: #000;
+        }
+
+        /* Floating Animation Definition */
+        @keyframes masterFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow: hidden;
             background-color: #000;
-            overflow-x: hidden;
         }
 
         .container {
-            width: 85%;
+            width: 90%;
             max-width: 420px;
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 25px;
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
             position: relative;
             z-index: 1;
+            /* Yahan floating apply kiya hai poore box par */
+            animation: masterFloat 5s ease-in-out infinite;
         }
 
         .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-color);
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
-            object-fit: cover;
+            width: 110px; height: 110px; border-radius: 50%;
+            border: 3px solid var(--primary-color); margin-bottom: 15px;
+            box-shadow: 0 0 20px var(--primary-color); object-fit: cover;
         }
 
-        h2.title { font-size: 0.85rem; color: #aaa; margin-bottom: 5px; letter-spacing: 3px; font-weight: 400; }
-        h1.main-name { font-size: 1.4rem; margin: 0 0 20px 0; color: #fff; letter-spacing: 1px; }
+        h2.title { font-size: 0.9rem; color: #888; margin-bottom: 5px; letter-spacing: 2px; }
+        h1.main-name { font-size: 1.5rem; margin: 0 0 20px 0; color: #fff; text-shadow: 0 0 10px var(--primary-color); }
 
-        .info-card { 
-            background: rgba(255,255,255,0.05); 
-            border-radius: 12px; 
-            padding: 15px; 
-            text-align: left; 
-            margin-bottom: 20px; 
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .info-item { 
-            margin-bottom: 10px; 
-            padding-bottom: 8px; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-        }
-
-        .info-item:last-child { border-bottom: none; }
-
-        .label { color: #888; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
-        .value { color: var(--primary-color); font-size: 0.9rem; display: block; margin-top: 2px; }
+        .info-card { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 15px; text-align: left; margin-bottom: 20px; border: 1px solid var(--border-color); }
+        .info-item { margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+        .label { color: #888; font-size: 0.75rem; font-weight: bold; }
+        .value { color: var(--primary-color); font-size: 0.95rem; display: block; margin-top: 2px; }
 
         .btn-main { 
             display: block; 
             background: var(--primary-color); 
-            color: #000; 
-            padding: 14px; 
-            border-radius: 10px; 
+            color: black; 
+            padding: 12px; 
+            border-radius: 12px; 
             text-decoration: none; 
             font-weight: bold; 
             margin-bottom: 15px; 
-            transition: transform 0.2s; 
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
         }
 
-        .btn-main:active { transform: scale(0.98); }
+        .btn-main:hover { box-shadow: 0 0 25px var(--primary-color); transform: scale(1.02); }
 
-        .nav-links { display: flex; justify-content: space-around; margin-top: 15px; }
-        .nav-links a { color: #bbb; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary-color); }
+        .nav-links { display: flex; justify-content: space-around; margin-top: 20px; }
+        .nav-links a { color: #aaa; text-decoration: none; font-size: 0.8rem; transition: 0.3s; border-bottom: 1px solid transparent; }
+        .nav-links a:hover { color: var(--primary-color); border-bottom: 1px solid var(--primary-color); }
 
-        .glitch-footer { font-size: 0.7rem; color: #555; margin-top: 25px; line-height: 1.5; }
+        .glitch-footer { font-size: 0.75rem; color: #555; margin-top: 25px; line-height: 1.4; }
     </style>
 </head>
 <body>
 
 <video muted autoplay loop playsinline id="bg-video">
-    <source src="./bg.mp4" type="video/mp4">
+    <source src="bg.mp4" type="video/mp4">
 </video>
 
 <div class="container">
-    <img src="./dp.jpg" alt="PROXY" class="profile-img">
+    <img src="dp.jpg" alt="PROXY" class="profile-img">
 
     <h2 class="title">🔻💻 𝗔𝗕𝗢𝗨𝗧 💻🔻</h2>
     <h1 class="main-name">•𝗣 𝗥 𝗢 𝗫 𝗬𐏓𝟑🕸️</h1>
 
     <div class="info-card">
-        <div class="info-item">
-            <span class="label">🕸️ 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠 𝗡𝗔𝗠𝗘</span>
-            <span class="value">⚡ 𝐏𝐑𝐎𝐗𝐘 𐏓𝟑 ⚕️</span>
-        </div>
-        <div class="info-item">
-            <span class="label">🕸️ 𝗨𝗦𝗘𝗥𝗡𝗔𝗠𝗘</span>
-            <span class="value">🎧 @Proxyfxz</span>
-        </div>
-        <div class="info-item">
-            <span class="label">🕸️ 𝗨𝗦𝗘𝗥 𝗜𝗗</span>
-            <span class="value">🎧 8210445482</span>
-        </div>
-        <div class="info-item">
-            <span class="label">🕸️ 𝗕𝗜𝗥𝗧𝗛</span>
-            <span class="value">🎧 24 • OCT 🕶️</span>
-        </div>
-        <div class="info-item">
-            <span class="label">🕸️ 𝗦𝗧𝗨𝗗𝗬</span>
-            <span class="value">🎧 👨‍💻 𝙀𝙣𝙜𝙞𝙣𝙚𝙚𝙧𝙞𝙣𝙜</span>
-        </div>
+        <div class="info-item"><span class="label">🕸️ TELEGRAM</span><span class="value">@Proxyfxz</span></div>
+        <div class="info-item"><span class="label">🕸️ USER ID</span><span class="value">8210445482</span></div>
+        <div class="info-item"><span class="label">🕸️ STUDY</span><span class="value">Engineering 👨‍💻</span></div>
     </div>
 
     <a href="https://t.me/Proxyfxz" class="btn-main">CONTACT PROXY</a>
@@ -149,8 +121,8 @@
     </div>
 
     <div class="glitch-footer">
-        • 𝗖𝗢𝗗𝗘 • 𝗖𝗥𝗘𝗔𝗧𝗘 • 𝗗𝗢𝗠𝗜𝗡𝗔𝗧𝗘 •<br>
-        💢 𝐋ɪᴠɪɴɢ 𝐈ɴ 𝐌ʏ 𝐎ᴡɴ 𝐆ʟɪᴛᴄʜᴇᴅ 𝐖ᴏʀʟᴅ 💢
+        • CODE • CREATE • DOMINATE •<br>
+        💢 LIVING IN MY GLITCHED WORLD 💢
     </div>
 </div>
 
